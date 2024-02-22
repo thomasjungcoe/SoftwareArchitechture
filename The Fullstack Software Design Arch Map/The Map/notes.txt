@@ -1,0 +1,160 @@
+While the stack is good to see the bigger picture of how everything works together, the map is a little bit more detailed.
+
+Stage 1: Clean Code
+==========================================================================================================================
+    The very first step towards creating long-lasting software is figuring out how to write 'clean code'.
+    
+    Clean code is code that is easy to understand and change. At the low-level, this manifests in a few design choices:
+        * being consistent
+        * preferring meaningful variable, method and class name over writing comments
+        * ensuring code is indented and spaced properly
+        * writing pure functions with no side effects
+        * not passing null
+
+
+Stage 2: Programming Paradigms
+==========================================================================================================================
+    3 major programming paradigms and way they influence how we write code:
+        * Object-Oriented Programming is the tool best suited for defining how we cross architectural boundaries with 
+            polymorphism and plugins.
+        * Functional programming is the tool we use to push data to the boundaries of our application.
+        * and Structured programming is the tool we use to write algorithm.
+    
+    This implies that effective software uses a hybrid all 3 of programming paradigms styles at different times.
+        
+    Functional programming resources:  
+        * https://mostly-adequate.gitbook.io/mostly-adequate-guide/
+        * https://pragprog.com/search/?q=d
+            - https://pragprog.com/titles/swdddf/domain-modeling-made-functional/
+
+
+
+Stage 3: Object-Oriented Programming
+==========================================================================================================================
+    It's important to know how each of the paradigms work and how they urge you to structure the code within them, but
+        with respect to architecture, OOP is the clear tool for the job.
+
+    Not only does OOP enables us to create a plugin architecture and build flexibility into our projects;
+    
+    OOP comes with the 4 principles of OOP (encapsulation, inheritance, polymorphism, and abstraction) that helps us 
+        create "rich domain models".
+
+    Most developers learning Object-Oriented Programming never get to this part: 
+        learning how to create a software implementation of the problem domain, 
+        and locating it in the center of a layered web app.
+
+    Functional programming can seem like the means to all ends in this scenario, but I'd recommend getting acquainted with 
+        model-driven design and Domain-Driven Design to understand the bigger picture on how object-modelers are able to 
+        encapsulate an entire business in a zero-dependency domain model.
+            * https://khalilstemmler.com/articles/domain-driven-design-intro/
+
+
+    Why is that a huge deal?
+        It's huge bc if you can create a mental-model of a business, 
+            you can create a software implementation of that business.
+
+    
+Stage 4: Design Principles
+==========================================================================================================================
+    OOP is very useful for encapsulating rich domain models and solving the 3rd type of "Hard Software Problems"
+        "Hard Software Problems"
+            1.) The Performant System Problem
+                ex.) Twitter
+                    What it does is simple, but it is serving requests from more than 500 million users.
+                    The hard problem that Twitter solves is actually a performance problem. When the challenge is performance,
+                        Whether we use a strictly typed language or not is less important.
+            
+            2.) The Embedded System Problem 
+                An embedded system is a combination of computer hardware and software, with the purpose of enabling control 
+                    over the mechanical or electrical aspect of a system.
+                
+                Most systems we use today are built on a very complex layer of code that, if not initially written in, 
+                    compiles down to C or C++ usually.
+                    
+                C is precedural and not OOP so it is more challenging to keep clean.
+                C++ does make life a whole lot better bc it has obj orientation, but the challenge is still fundementally 
+                    interacting with lower-level hardware details.
+                
+            3.) The Complex Domain Problem
+                For some problems, that challenge is less about scaling in terms of handling more requests, but scaling in 
+                    terms of the codebase's size.
+
+                Enterprice companies have complex real-life problems to be solved.
+                    * Being able to logically (via domains) separate parts of that monolith into smaller apps. 
+                        And then, physically (via microservices for bounded contexts) split them up so that teams can be 
+                        assigned to maintain them.
+                    * Handling integration and synchronization between these apps.
+                    * Modeling the domain concepts and actually solving the problems of the domain.
+                    * Creating a ubiquitous (all encompassing) language to be shared by devs and domain experts
+                    * Not getting lost in the mass amount of code written and slowing down to the point where it becomes 
+                        impossible to add new features without beraking existing ones.
+
+
+    But OOP can introduce some design challenges:
+        * When should I use composition?
+        * When should I use inheritance?
+        * When should I use an abstract class?
+
+    Design principles are really well-established and battle-tested object-oriented best practices that you use as railguards.
+        * Composition over inheritance
+        * Encapsulate what varies
+        * Program against abstractions, not concretions.
+        * The hollywood principle: "Don't call us, we will call you"
+        * The 'SOLID' principles, especially the 'Single responsibility principle'
+            - 'SOLID' principles
+
+
+
+
+
+
+
+
+
+            - Single responsibility principle
+
+
+
+        * DRY (DO Not Repeat Yourself)
+        * 'YAGNI (You Aren't Gonna Need It)'
+            - YAGNI
+
+
+
+
+                
+
+    Make sure to come to your own conclusions, though. 
+    Don't just follow what someone else says you should do. 
+    Make sure that it makes sense to you.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==========================================================================================================================
+
+==========================================================================================================================
+
+==========================================================================================================================
+
+==========================================================================================================================
+
+==========================================================================================================================
+
+==========================================================================================================================
+
+==========================================================================================================================
+
+==========================================================================================================================
+
+==========================================================================================================================

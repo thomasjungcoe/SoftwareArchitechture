@@ -1,0 +1,14 @@
+The Stack is one of the two artifacts of software design and architecture.
+
+Similar to OSI Model in networking, each layer builds on top of the foundation of the previous one.
+
+The software design and architecture.
+    Enterprice Patterns      -- DTOs, Domain-Models, Transaction Script, Repositories, Mappers, Value Objects
+    Architectural Patterns   -- Model-View-Controller, Domain-Driven Design 
+    Architectural Styles     -- Layered, Client-Server, Monolithic, Component-based
+    Architectural Principles -- Policy vs details, Coupling & cohesion, dependencies, boundaries
+    Design Patterns          -- Observer, Strategy, Factory, etc.
+    Design Principles        -- Composition Over Inheritance, Hollywood Principle, encapsulate what varies, SOLID, DRY, YAGNI
+    Obj-Oriented Prog        -- Inheritance, Polymorphism, Encapsulation, Abstraction
+    Programming Paradigms    -- Structured, Obj-Oriented, Functional
+    Clean Code               -- Name, construct, structure, style, readability
