@@ -102,59 +102,186 @@ Stage 4: Design Principles
         * The hollywood principle: "Don't call us, we will call you"
         * The 'SOLID' principles, especially the 'Single responsibility principle'
             - 'SOLID' principles
+                SOLID principles teach us how we can structure our functions and classes in order to be as robust,
+                    maintainable, and flexible as possible.
+                1.) S: Single Responsibility Principles
+                2.) O: Open-Closed Principle 
+                3.) L: Liskov-Substitution Principles 
+                4.) I: Interface Segregation Principles 
+                5.) D: Dependency Inversion Principles
 
-
-
-
-
-
-
-
-
-            - Single responsibility principle
-
-
+            Benefits:
+                * Write code that's testable
+                * write code that's easily understood
+                * write code where things are where they are expected to be 
+                * write code where classes narrowly do what they are intended to do 
+                * write code that are adjusted and extended quickly
+                * above but w/o bugs
+                * write code that separate the policy (rule) from the details (implementation)
+                * write code that allows for implementations to be swapped out (think swapping out
+                    Email APIs, ORMs or web server frameworks)
 
         * DRY (DO Not Repeat Yourself)
         * 'YAGNI (You Aren't Gonna Need It)'
-            - YAGNI
+            - YAGNI is a design principle from Extreme Programming (XP) that states a programmer shouldn't 
+                add any 'functionality until it's actually necessary'
+                - keep it simple?
+                - quicker to advance
+                - helps prevent design fatique or fear of a large all emcompassing up-front design
 
-
-
-
-                
+            BUT!
+                YAGNI is design to be combined with 'continous refactoring', automated until testing and 
+                    continous integration.
+                Failure to refactor code early could require huge amount of tech debt and rework.
+                Therefore, for this to work well:
+                    * write code that are testable
+                    * run automated tests
 
     Make sure to come to your own conclusions, though. 
     Don't just follow what someone else says you should do. 
     Make sure that it makes sense to you.
 
 
+Stage 5: Design Patterns
+==========================================================================================================================
+    There are three categories of design patterns: creational, structural, and behavioral
+    * Creational Pattern are patterns that control how objects are created.
+        - The 'Singleton pattern' for ensuring only a single instance of class can exist 
+        - The 'Abstract Factory Pattern' for creating an instances of several families of classes 
+        - 'The Prototype Pattern' for starting out with an instance that is cloned from an existing one.
+    
+    * Structural Pattern are patterns that simplify how we define relationships betwen components
+        - 'The Adapter Pattern', for creating an interface to enable classes that normally can't work together, 
+            to work together
+        - 'The Bridge Pattern', for splitting a class that should actually be one or more, into a set of classes 
+            that belong to a hierarchy, enabling the implementations to be developed indepently from each other.
+        - 'The Decorator Pattern', for adding responsibilities to objects dynamically.
+    
+    * 'Behavioral Pattern' are common patterns for facilitating elegant communication between objects.
+        - 'The Template pattern', for deferring the example steps of an algorithm to a subclass
+        - 'The Mediator pattern', for defining the exact communication channels to allowed between classes 
+        - 'The Observer pattern', for enabling classes to subscribe to something of interest, and to be notified
+            when a change occurred.
+
+    Design pattern criticism
+        Although they can be great, but sometimes they add additional complexity to our design.
+        It is important to remember YAGNI and attempt to keep out design as simple as possible.
+        Only use Design Pattern when you're really sure you need them.
+
+        * architectural patterns are just design patterns blown-up in scale to the high-level, 
+            where design patterns are low-level implementations (closer to classes and functions). 
+
+    
+Stage 6: Architectural Principles
+==========================================================================================================================
+    Now we're at a higher level of thinking beyond the class level.
+
+    We now understand that the decisions we make towards organizing and building relationships between 
+        components at high-level and the low-level, will have a significant impact on the maintainability,
+        flexibility, and testability of our projects.
+
+    * 'Component design principles': 
+        The Stable Abstraction Principle, The Stable Dependency Principle, and 
+        Acyclic Dependency principle, for how to organize components, their dependencies, when to couple
+        them, and the implications of accidentally creating dependency cycles and relying on unstable component
+            
+            The Stable Abstraction Principle (SAP): The more stable a component is, the more abstract it 
+                should be. 
+                If a component is more stable, it's likely it's going to be serving more purposes for more 
+                    groups of people, and for different problems.
+                In order to prevent a component from becoming too specific or rigid, 
+                    we should primarily use abstract classes.
+                Abstract class work well for defining high-level policy and leaving room for various room
+                     for the low-level details.
+            
+            The Stable Dependency Principle (SDP): Component dependencies should be in the direction of stability
+                
+                * infra layer -> app layer -> domain layer
+                
+                Every system has stable componenets and volatile compoenents
 
 
+    * Policy vs Detail,
+        for understanding how to separate the rules of your application from the implementation details.
+    
+    * Boundaries, and how to identify the subdomains that the features of your appoication belongs within.
 
 
+Stage 7: Architectural Styles
+==========================================================================================================================
+Architecture is about the stuff that matters.
+
+It's about identifying what a system needs in order to be successful, and then stacking the odds of success 
+    by choosing the architecture that best fits the requirements.
+
+    ex.) 
+    a system that has a lot of 'business logic complexity' would benefit from using a 'layered architecture' 
+        to encapsulate that complexity.
+
+    a system like Uber needs to be able to handle lots of 'real-time events' at once and update drivers' 
+        location so 'publish-subscribe style' architecture might be most effective.
+
+    The 3 categories of arch. styles are similiar to the 3 categories of design patterns bc 
+        architectural styles are design patterns at the high-level.
+
+    Structrual
+        Projects with varying level of components and wide-range functionality will either benefit or suffer 
+            from adopting a structural architecture.
+        ex.)
+            'Component-based archt.' emphasize separation of concerns between the individual component within 
+                a system.
+                * Google with their different apps: Google Docs, Google Drive, Google Maps, etc.
+                For platforms with lots of functionality, component based architectures divide the concerns 
+                    into loosely coupled independent component. (horizontal separation)
+            
+            'Monolithic' means that the application is combined into a single platform or program, deployed 
+                all together.
+                Note: you can have both component based and monolithic if you separate your application 
+                    properly, yet deploy it all as one piece.
+            
+            'Layered' archt. separate concerns vertically by cutting software into infrastructure, application, 
+                and domain layer.
+                ex.) infrastrcuture layer -> adapter layer -> app layer -> domain layer.
+                Infrastructure details -- controllers, routes, databses, caches, ORMs
+                Adapter Logic          -- responsible for access to infra. and external APIs
+                App Logic              -- Use cases / Application services the features of our application.
+                Core Domain Logic      -- Entities, Value Object, Domain Event.
+            
+    Messaging
+        Depending on your proj, messaging might be a really important component to the success of the system.
+            Message-based architectures build on top of functional programming principle and behavioral 
+            design patterns like the observer pattern.
+
+        ex.) 
+            Event-Driven archt. view all significant changes to state as events.
+                - 
+
+            Publish-subscribe archt. builds on top of the Observer design pattern by making its primary
+                communication method between the system itself, end users/clients, and other systems and components.  
+
+    Distributed        
+        A distributed arch simply means that the component of the system is deployed separately and operate 
+            by commounicating over network protocol.
+        Distributed systems can be very effective for scaling throughput, scaling team, and delegating 
+            (potentially expensive tasks or) responsibility to other components.
+
+            * Client-server arch     
+                one of the most common distributed system, where we divide the work to be done between
+                client (presentation) and the server (business logic)
+            * Peer-to-peer arch
+                distribute application-layer taks between equally-priviledged participants, forming
+                peer-to-peer network. 
 
 
-
-
-
-
-
-
+Stage 8: Architectural Patterns
 ==========================================================================================================================
 
-==========================================================================================================================
 
-==========================================================================================================================
 
-==========================================================================================================================
 
-==========================================================================================================================
 
-==========================================================================================================================
 
-==========================================================================================================================
 
-==========================================================================================================================
+
 
 ==========================================================================================================================
