@@ -275,13 +275,64 @@ It's about identifying what a system needs in order to be successful, and then s
 
 Stage 8: Architectural Patterns
 ==========================================================================================================================
+Architectural Patterns explain in greater tactical detail how to actually implement one of those architectural styles.
+* 'Domain-Driven Design' is an approach to software development against really complex problem domains. For DDD to be most sucessful,
+    We need to implement a 'layered architecture' in order to separate the concerns of a domain model from the finfrastructral details 
+    that makes the application actually run, like databases, webservers, caches, etc.
+
+* Model-View Controller is probably the most well-known architectural pattern for developing user interface-based applications. It 
+    works by dividing the app into 3 components: model, view, and controller. MVC is incredibly useful when you're first starting out,
+    and it helps you piggyback towards other architectures, but there hit's a point when we realize MVC isn't enough for problmes with 
+    lots of business logic 
+
+* Event sourcing is a functional approach where we store only the transactions, and never the state. If we ever need the state, 
+    we can apply all the transactions from the beginning of time.
 
 
-
-
-
-
-
-
-
+Stage 9: Enterprise Patterns
 ==========================================================================================================================
+Any architectureal pattern you choose will introduce a nubmer of constructs and technical jargon to familairize yourself with and 
+    decide on whether it's worth the effort to use or not.
+
+    ex.)
+        In MVC, the "view" holds all the presentation layer code, the "controller" is traslates commands and queries from the "view" 
+            into requests that are handled by the model and returned by the "controller".
+        
+        Where in the Model (M) do we handle these things?
+        * validation logic
+        * invariant rules
+        * domain events 
+        * use cases 
+        * complex queries 
+        * and business logic 
+
+        If we simply use an ORM (object-relational mapper) like Sequelize or TypeORM as the "model", all that important stuff to gets left 
+            to interpretation on where it should go, and it finds itself in some unspecific layer between (what should be a rich) model and 
+            the controller.
+
+            View -> Controller -> ?? --> Model 
+        
+        For each of those things that MVC fails to address, there exist other enterprise patterns to solve them.
+        ex.)
+            * Entities describe models that have an identity 
+            * Value Obj are models that have no identity, and can be used in order to encapsulate validation logic. 
+            * Domain Events are events that signify some relevant business event occurring, and can be subscribed to from other components.
+
+    Integration patterns
+        Once your app is up and runninng, as you get more and more users, you might run into performance issues. In order to solve these problems, 
+            you might read about integrating things like message queues or caches in order to improve performance.
+
+        This is probably the most challengeing stuff: scaling, audits, and performance.
+
+        Designing a system for "scale" can be incredibly challenging. It requires a deep understanding of the limitations of each component 
+            within the archtecture, and a plan of action for how to mitigate stress on your architecture and continue to serve requests in 
+            high-traffic situations.
+        
+        The need to "audit" what's going on in your app. Large enterprise companies need to be able to perform audits in order to identify 
+            potential security issues, understand how users are using their applications and have a log of evertying that's ever happened.
+        
+        This can be challegning to implement, but common architectures end up looking event-based and build upon a wide range of software and system 
+            design concepts, principles, and practices like Event Storming, DDD, CQRS (command query response segregation), and Event Sourcing. 
+
+
+
